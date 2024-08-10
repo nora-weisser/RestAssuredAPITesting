@@ -1,6 +1,9 @@
 import files.ReusableMethods;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import pojo.Api;
+import pojo.GetCourse;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -34,9 +37,21 @@ public class GetCourseDetails {
         System.out.println(response);
         System.out.println(accessToken);
 
-        String coursesDetails = given().log().all().queryParam("access_token", accessToken).when().get("getCourseDetails")
+        // get Java object = deserialization
+        GetCourse coursesDetails = given().log().all().queryParam("access_token", accessToken).when().get("getCourseDetails")
                 .then().log().all().log().all()
-                .extract().response().asString();
-        System.out.println(coursesDetails);
+                .extract().response().as(GetCourse.class);
+
+        System.out.println(coursesDetails.getLinkedIn());
+        System.out.println(coursesDetails.getInstructor());
+
+        System.out.println(coursesDetails.getCourses().getApi().get(1).getCourseTitle());
+
+        List<Api> apiCourses = coursesDetails.getCourses().getApi();
+        for(int i = 0; i < apiCourses.size(); i++) {
+            if (apiCourses.get(i).getCourseTitle().equalsIgnoreCase("SoapUI Webservices testing")) {
+                System.out.println(apiCourses.get(i).getPrice());
+            }
+        }
     }
 }
