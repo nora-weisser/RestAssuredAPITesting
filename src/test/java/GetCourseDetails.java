@@ -2,9 +2,9 @@ import files.ReusableMethods;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
-import pojo.Api;
-import pojo.GetCourse;
-import pojo.WebAutomation;
+import pojoGetCourses.Api;
+import pojoGetCourses.GetCourse;
+import pojoGetCourses.WebAutomation;
 
 import java.util.ArrayList;
 import java.util.Arrays;

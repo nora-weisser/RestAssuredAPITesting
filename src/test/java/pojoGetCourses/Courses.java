@@ -1,4 +1,4 @@
-package pojo;
+package pojoGetCourses;
 
 import java.util.List;
 

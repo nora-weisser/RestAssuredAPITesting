@@ -1,4 +1,4 @@
-package pojo;
+package pojoGetCourses;
 
 public class GetCourse {
     private String instructor;
@@ -24,7 +24,7 @@ public class GetCourse {
         return expertise;
     }
 
-    public pojo.Courses getCourses() {
+    public pojoGetCourses.Courses getCourses() {
         return courses;
     }
 
@@ -48,7 +48,7 @@ public class GetCourse {
         this.expertise = expertise;
     }
 
-    public void setCourses(pojo.Courses courses) {
+    public void setCourses(pojoGetCourses.Courses courses) {
         this.courses = courses;
     }
 

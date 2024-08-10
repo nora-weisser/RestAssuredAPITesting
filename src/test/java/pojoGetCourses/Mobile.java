@@ -1,4 +1,4 @@
-package pojo;
+package pojoGetCourses;
 
 public class Mobile {
     private String courseTitle;
