@@ -1,8 +1,13 @@
 import files.ReusableMethods;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import org.testng.Assert;
 import pojo.Api;
 import pojo.GetCourse;
+import pojo.WebAutomation;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -24,6 +29,8 @@ Form Parameters:
 
 public class GetCourseDetails {
     public static void main(String[] args) {
+
+        String[] courseTitles = {"Selenium Webdriver Java", "Cypress", "Protractor"};
 
         RestAssured.baseURI = "https://rahulshettyacademy.com/oauthapi/";
         String response = given().formParam("client_id", "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
@@ -53,5 +60,14 @@ public class GetCourseDetails {
                 System.out.println(apiCourses.get(i).getPrice());
             }
         }
+
+        // print all title courses inside WebAutomation
+        List<WebAutomation> webAutomationCourses = coursesDetails.getCourses().getWebAutomation();
+        ArrayList<String> a = new ArrayList<String>();
+        for(int i = 0; i < webAutomationCourses.size(); i++) {
+            a.add(webAutomationCourses.get(i).getCourseTitle());
+        }
+        List<String> expectedList = Arrays.asList(courseTitles);
+        Assert.assertEquals(expectedList, a);
     }
 }
